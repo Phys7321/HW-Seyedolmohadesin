@@ -1,0 +1,5 @@
+# Feedback HW2
+9.23
+Looks pretty good. I think you got all the physics correct (thought the potential graph of the line looks a little wierd, why would V<0 anywhere?), now it's a questions of display. I think that you should look into contour plots instead of surface, and the function np.quiver to display that electric field vectors - the values may be right, but the electric field is a vector and a surface plot does a poor job in showing that.
+9.26
+Looks much better. I think you were telling me that the 3d quiver plot is really busy - it is, I think that it is a much better visualization as a contour plot in 2D (in a slice of z). I would still like to see that you can plot the contour lines and the vector file in 1 plot in MATLAB.
