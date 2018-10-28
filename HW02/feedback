@@ -3,3 +3,9 @@
 Looks pretty good. I think you got all the physics correct (thought the potential graph of the line looks a little wierd, why would V<0 anywhere?), now it's a questions of display. I think that you should look into contour plots instead of surface, and the function np.quiver to display that electric field vectors - the values may be right, but the electric field is a vector and a surface plot does a poor job in showing that.
 9.26
 Looks much better. I think you were telling me that the 3d quiver plot is really busy - it is, I think that it is a much better visualization as a contour plot in 2D (in a slice of z). I would still like to see that you can plot the contour lines and the vector file in 1 plot in MATLAB.
+10.24
+I'm happy with the update of HW2. As for HW3, there's a lot here so here's a list of checks you should do
+1) I'm not sure where problem 1 is
+2) Problem 2, I'd look through the code used to find the relationship between the period and the initial angle. There should be a constantly increasing period with increasing angle, not a sudden increase as your results show
+3) In problem 3, double check the code that found the "equilibrium time", I don't think that your event function is finding the correct end of the motion. Also, I have the exact opposite relationship between angular frequency and gamma than what you found.
+4) On problem 4, I see that you took my driving frequency too literally, and the phase angle delta should be within the cos function, that changes your answer a bit
