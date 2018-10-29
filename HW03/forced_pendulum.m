@@ -29,7 +29,7 @@ N = 20;
 
 
 tspan = [0 N*T];
-if gamma >= 5
+if gamma >= 4
     
     opts = odeset('events',@events,'refine',6); % stops at equilibrium
 else 
@@ -42,24 +42,25 @@ sol = [t,w];
 ind= find(w(:,2).*circshift(w(:,2), [-1 0]) <= 0);
 
 period=0;
-if length(ind) > 2 % condition for oscillatory motion
-    
-    
-    ind = chop(ind,4);
-    ind = ind(end-5:end); % find the period of the steady part of the motion  
-    period= 2*mean(diff(t(ind)));
+if gamma < 4 
+l=length(ind) ;
+l=int16(l/2);% using the second half of the data which represents the steady state    
+ind = ind(end-l:end-2); %Truncating spurious indices
+k = 1:2:length(ind); % getting every other indice
+ind = ind(k);
+period= mean(diff(t(ind)));
+
+end
  
     E0 = 0.5 .* R.^2 .* thetad0 .^2 + g .* R .* (1-cos(theta0));  % Initial energy of the pendulum
 
-    KE = 0.5 .* R.^2 .* w(ind(1): ind(3),2).^2 ; % Kinetic Energy
-    U = g .* R .* (1-cos(w(ind(1): ind(3),1))) ; % Potential Energy
+    KE = 0.5 .* R.^2 .* w(:,2).^2 ; % Kinetic Energy
+    U = g .* R .* (1-cos(w(:,1))) ; % Potential Energy
     E=KE+U; % Total Energy in one cycle
 
     deltaE= (E(:) - E0) ./ E0; % function delta 
-end
-% Small-angle approximation solution
-delta = atan(theta0/(omega*thetad0));
-y = theta0*sin(omega*t+delta);
+
+
 
 if grph % Plot Solutions of exact and small angle
     
