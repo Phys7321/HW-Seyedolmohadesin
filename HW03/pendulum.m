@@ -22,7 +22,7 @@ g=9.81;
 omega = sqrt(g/R);
 T= 2*pi/omega;
 % number of oscillations to graph
-N = 10;
+N = 8;
 
 
 tspan = [0 N*T];
@@ -37,8 +37,8 @@ period= 2*mean(diff(t(ind)));
  
 E0 = 0.5 .* R.^2 .* thetad0 .^2 + g .* R .* (1-cos(theta0));  % Initial energy of the pendulum
 
-KE = 0.5 .* R.^2 .* w(ind(1): ind(3),2).^2 ; % Kinetic Energy
-U = g .* R .* (1-cos(w(ind(1): ind(3),1))) ; % Potential Energy
+KE = 0.5 .* R.^2 .* w(: ,2).^2 ; % Kinetic Energy
+U = g .* R .* (1-cos(w(: ,1))) ; % Potential Energy
 E=KE+U; % Total Energy in one cycle
 
 deltaE= (E(:) - E0) ./ E0; % function delta 
@@ -48,9 +48,11 @@ delta = atan(theta0/(omega*thetad0));
 y = theta0*sin(omega*t+delta);
 
 if grph % Plot Solutions of exact and small angle
+    
+    %{
     f1=figure;
     
- %{   subplot(2,1,1)
+    subplot(2,1,1)
     plot(t,w(:,1),'k-',t,y,'b--')
     legend('Exact','Small Angle')
     title('Exact vs Approximate Solutions')
@@ -60,19 +62,19 @@ if grph % Plot Solutions of exact and small angle
     plot(t,w(:,1)-y,'k-')
     title('Difference between Exact and Approximate')
     xlabel('t')
-    ylabel( '\Delta\phi')
-    
+    ylabel( '\Delta\phi') 
+    %}
     f2=figure ('Name', 'energy');
     
     subplot(2,1,1)
-    plot(t(ind(1):ind(3)),deltaE,'m:')
+    plot(t(:),deltaE,'m-')
     title('\Delta')
     xlabel('t')
     ylabel( '\Delta')
     
-     subplot(2,1,2)
-    plot(t(ind(1):ind(3)),KE, 'c-', t(ind(1):ind(3)), U, 'm-')
-    legend('Kinetic Energy','Potential Energy')
+    subplot(2,1,2)
+    plot(t(:),KE, 'c-', t(:), U, 'm-', t, E, 'K-')
+    legend('Kinetic Energy','Potential Energy', 'Total Energy')
     xlabel('t')
     
     f3=figure ('Name', 'Velocity and Position');
