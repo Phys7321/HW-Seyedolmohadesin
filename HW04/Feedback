@@ -1,0 +1,2 @@
+11.17
+HW4 looks good. I like how you used mod to calculate the deviation every n cycles in the second exercise. This is totally using whatever works. I'd like you to take another look at your moment test for the IBM random lcm. You should have found the deviation in the expected moment vs the actual moment you calculated. I didn't see that. Did I miss something?
