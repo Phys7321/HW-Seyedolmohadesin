@@ -1,0 +1,2 @@
+12.11
+The MATLAB work looks good, it looks like you fixed the phase angle calculation. But be careful, the peak in the amplitude does not occur at w=3, but right before then. Heatflow programs look good. 
